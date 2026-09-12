@@ -1,11 +1,19 @@
-University: [ITMO University](https://itmo.ru/ru/)  
-Faculty: [FICT](https://fict.itmo.ru)  
-Course: [Введение в веб технологии](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/)  
-Year: 2026/2027  
-Group: U4225  
-Author: Степанов Даниил Сергеевич  
-Lab: Lab0  
-Date of create: 12.09.2026  
+University: [ITMO University](https://itmo.ru/ru/)
+
+Faculty: [FICT](https://fict.itmo.ru)
+
+Course: [Введение в веб технологии](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/)
+
+Year: 2026/2027
+
+Group: U4225
+
+Author: Степанов Даниил Сергеевич
+
+Lab: Lab0
+
+Date of create: 12.09.2026
+
 Date of finished: — (заполняется после защиты)
 
 # Лабораторная работа №0. Создание репозитория и настройка рабочего окружения
