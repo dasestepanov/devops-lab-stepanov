@@ -13,7 +13,7 @@
 
 ## Курсовая работа
 
-- [Курсовая работа — персональный сайт на MkDocs](coursework/COURSEWORK.md)
+- [Курсовая работа — обновлённый отчёт со скриншотами](https://github.com/dasestepanov/2026_2027-introduction-in-web-tech-u4225-stepanov_d_s/blob/main/coursework/COURSEWORK.md)
 - [Исходники курсовой](coursework/)
 - Сайт курсовой — ожидает публикации.
 
