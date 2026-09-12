@@ -1,0 +1,29 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+.TemporaryItems
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Временные файлы редакторов
+*~
+*.swp
+*.swo
+
+# Локальные секреты и окружение
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Локальные журналы
+*.log
