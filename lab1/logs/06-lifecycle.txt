@@ -1,0 +1,54 @@
+$ docker ps --filter name=lab1-20260912 --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+CONTAINER ID   IMAGE                        STATUS              NAMES
+9127642c3722   ubuntu                       Up 4 seconds        lab1-20260912-volume-new
+d1689203828b   my-flask-app:lab1-20260912   Up 52 seconds       lab1-20260912-flask
+daba06f8388e   nginx:alpine                 Up About a minute   lab1-20260912-web
+
+[exit code: 0]
+
+$ docker ps -a --filter name=lab1-20260912 --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+CONTAINER ID   IMAGE                        STATUS                          NAMES
+9127642c3722   ubuntu                       Up 4 seconds                    lab1-20260912-volume-new
+d1689203828b   my-flask-app:lab1-20260912   Up 52 seconds                   lab1-20260912-flask
+daba06f8388e   nginx:alpine                 Up About a minute               lab1-20260912-web
+2c5114f11076   2260313b31c8                 Exited (0) About a minute ago   lab1-20260912-ubuntu
+5780fe866c5f   hello-world                  Exited (0) 2 minutes ago        lab1-20260912-hello
+
+[exit code: 0]
+
+$ docker stop lab1-20260912-web
+lab1-20260912-web
+
+[exit code: 0]
+
+$ docker inspect lab1-20260912-web --format '{{.State.Status}}'
+exited
+
+[exit code: 0]
+
+$ docker start lab1-20260912-web
+lab1-20260912-web
+
+[exit code: 0]
+
+$ docker inspect lab1-20260912-web --format '{{.State.Status}}'
+running
+
+[exit code: 0]
+
+$ docker stop lab1-20260912-web
+lab1-20260912-web
+
+[exit code: 0]
+
+$ docker rm lab1-20260912-web
+lab1-20260912-web
+
+[exit code: 0]
+
+$ docker rmi nginx:alpine
+Untagged: nginx:alpine
+Deleted: sha256:72ba65eb42c10344912a84ff42408db7d34f2feb642204570ab8fc5ffd29f1d3
+
+[exit code: 0]
+

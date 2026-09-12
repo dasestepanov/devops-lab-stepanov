@@ -1,0 +1,23 @@
+$ docker image inspect my-flask-app:lab1-20260912 --format 'User={{.Config.User}} WorkingDir={{.Config.WorkingDir}} Env={{json .Config.Env}} ExposedPorts={{json .Config.ExposedPorts}} Cmd={{json .Config.Cmd}}'
+User=appuser WorkingDir=/app Env=["PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin","LANG=C.UTF-8","GPG_KEY=E3FF2839C048B25C084DEBE9B26995E310250568","PYTHON_VERSION=3.9.25","PYTHON_SHA256=00e07d7c0f2f0cc002432d1ee84d2a40dae404a99303e3f97701c10966c91834","FLASK_ENV=production"] ExposedPorts={"5000/tcp":{}} Cmd=["python","app.py"]
+
+[exit code: 0]
+
+$ docker exec lab1-20260912-flask curl -sS http://localhost:5000
+Hello from Docker!
+[exit code: 0]
+
+$ docker stop lab1-20260912-volume-new
+lab1-20260912-volume-new
+
+[exit code: 0]
+
+$ docker ps -a --filter name=lab1-20260912 --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+CONTAINER ID   IMAGE                        STATUS                                NAMES
+9127642c3722   ubuntu                       Exited (137) Less than a second ago   lab1-20260912-volume-new
+d1689203828b   my-flask-app:lab1-20260912   Up About a minute                     lab1-20260912-flask
+2c5114f11076   2260313b31c8                 Exited (0) About a minute ago         lab1-20260912-ubuntu
+5780fe866c5f   hello-world                  Exited (0) 3 minutes ago              lab1-20260912-hello
+
+[exit code: 0]
+

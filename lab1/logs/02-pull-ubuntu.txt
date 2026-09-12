@@ -1,0 +1,11 @@
+latest: Pulling from library/ubuntu
+7189ca5dbddf: Pulling fs layer
+56f0dbdea740: Pulling fs layer
+7189ca5dbddf: Download complete
+0bcf1a333426: Download complete
+56f0dbdea740: Download complete
+7189ca5dbddf: Pull complete
+56f0dbdea740: Pull complete
+Digest: sha256:513c074113a871b51a8d16ab445c88779d6452d937a164fb5cc479f32668a41d
+Status: Downloaded newer image for ubuntu:latest
+docker.io/library/ubuntu:latest

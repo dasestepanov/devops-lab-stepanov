@@ -1,0 +1,19 @@
+$ docker ps -a --filter name=lab1-20260912 --format 'table {{.ID}}\t{{.Image}}\t{{.Status}}\t{{.Names}}'
+CONTAINER ID   IMAGE                        STATUS                       NAMES
+719f89d872dd   ubuntu                       Exited (0) 4 minutes ago     lab1-20260912-ubuntu-new
+9127642c3722   ubuntu                       Exited (137) 6 minutes ago   lab1-20260912-volume-new
+d1689203828b   my-flask-app:lab1-20260912   Up 8 minutes                 lab1-20260912-flask
+2c5114f11076   2260313b31c8                 Exited (0) 8 minutes ago     lab1-20260912-ubuntu
+5780fe866c5f   hello-world                  Exited (0) 9 minutes ago     lab1-20260912-hello
+
+[exit code: 0]
+
+$ curl -sS http://localhost:5001
+Hello from Docker!
+[exit code: 0]
+
+$ docker volume inspect lab1-20260912-volume --format '{{.Name}} {{.Driver}}'
+lab1-20260912-volume local
+
+[exit code: 0]
+

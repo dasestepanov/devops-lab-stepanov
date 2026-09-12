@@ -1,0 +1,56 @@
+$ sw_vers
+ProductName:		macOS
+ProductVersion:		26.6.2
+BuildVersion:		25G83
+
+[exit code: 0]
+
+$ docker --version
+Docker version 29.6.1, build 8900f1d
+
+[exit code: 0]
+
+$ docker info --format 'Server={{.ServerVersion}} OS={{.OSType}} Arch={{.Architecture}}'
+Server=29.6.1 OS=linux Arch=aarch64
+
+[exit code: 0]
+
+$ docker images
+IMAGE                       ID             DISK USAGE   CONTENT SIZE   EXTRA
+grafana/grafana:12.1.1      a1701c218024        906MB          186MB   U    
+hegai-postgres:17           2fdddd9be101        667MB          161MB   U    
+hello-world:latest          5dd0d3e6e255       22.6kB         10.3kB   U    
+lab2-my-flask-app:test      92923162d00e        311MB         68.8MB   U    
+my-flask-app:latest         07da595e4740        311MB         68.8MB   U    
+nginx:1.28.0-alpine         30f1c0d78e0a       76.9MB         22.7MB   U    
+postgres:17                 a426e44bac0b        667MB          166MB        
+postgres:17-alpine          18cfe3ef5e68        415MB          116MB   U    
+prom/node-exporter:v1.9.1   d00a542e409e       39.5MB         12.3MB   U    
+prom/prometheus:v3.5.0      63805ebb8d2b        423MB          117MB   U    
+ubuntu:latest               2260313b31c8        179MB         44.4MB   U    
+
+[exit code: 0]
+
+$ docker ps
+CONTAINER ID   IMAGE     COMMAND   CREATED          STATUS          PORTS     NAMES
+2c5114f11076   ubuntu    "bash"    50 seconds ago   Up 49 seconds             lab1-20260912-ubuntu
+
+[exit code: 0]
+
+$ docker ps -a
+CONTAINER ID   IMAGE                       COMMAND                  CREATED              STATUS                            PORTS                      NAMES
+2c5114f11076   ubuntu                      "bash"                   50 seconds ago       Up 49 seconds                                                lab1-20260912-ubuntu
+5780fe866c5f   hello-world                 "/hello"                 About a minute ago   Exited (0) About a minute ago                                lab1-20260912-hello
+cd1b204eb3f7   grafana/grafana:12.1.1      "/run.sh"                6 days ago           Exited (255) About a minute ago   127.0.0.1:3000->3000/tcp   lab3-grafana-1
+75eb211311da   nginx:1.28.0-alpine         "/docker-entrypoint.…"   6 days ago           Exited (255) About a minute ago   127.0.0.1:8083->80/tcp     lab3-target-1
+e7e59a1a4a56   prom/prometheus:v3.5.0      "/bin/prometheus --c…"   6 days ago           Exited (255) About a minute ago   127.0.0.1:9090->9090/tcp   lab3-prometheus-1
+5c52c4ee5758   prom/node-exporter:v1.9.1   "/bin/node_exporter …"   6 days ago           Exited (255) About a minute ago   127.0.0.1:9100->9100/tcp   lab3-node-exporter-1
+761f953db30f   ubuntu                      "bash"                   7 days ago           Exited (137) 7 days ago                                      volume-test-2
+7389041381b0   my-flask-app                "python app.py"          7 days ago           Exited (137) 6 days ago                                      flask-container
+c55faa0be7ef   ubuntu                      "bash"                   7 days ago           Exited (0) 7 days ago                                        lab1-ubuntu
+a2ddbb5d2be3   hello-world                 "/hello"                 7 days ago           Exited (0) 7 days ago                                        lab1-hello
+214f6ed62e28   postgres:17-alpine          "docker-entrypoint.s…"   2 weeks ago          Exited (0) 2 weeks ago                                       hegai-events-postgres
+ccd1a15b315c   hegai-postgres:17           "docker-entrypoint.s…"   8 weeks ago          Exited (0) 2 weeks ago                                       hegai-postgres
+
+[exit code: 0]
+

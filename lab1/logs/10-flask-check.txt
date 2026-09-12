@@ -1,0 +1,13 @@
+$ docker run -d -p 127.0.0.1:5001:5000 --name lab1-20260912-flask my-flask-app:lab1-20260912
+d1689203828be46014932caa4d9faffbac73b3c5dbf445969e875503f21ae010
+
+[exit code: 0]
+
+$ curl --retry 8 --retry-connrefused --retry-delay 1 -i http://127.0.0.1:5001
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+curl: (52) Empty reply from server
+
+[exit code: 52]
+

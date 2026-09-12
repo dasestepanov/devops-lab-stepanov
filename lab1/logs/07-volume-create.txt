@@ -1,0 +1,10 @@
+$ docker volume create lab1-20260912-volume
+lab1-20260912-volume
+
+[exit code: 0]
+
+$ docker run -it --name lab1-20260912-volume-test -d -v lab1-20260912-volume:/data ubuntu bash
+6b36be59e71e5ab62b31234dc7af7e752d3a583bab999a74c66a9eb9dfc88837
+
+[exit code: 0]
+

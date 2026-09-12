@@ -1,0 +1,25 @@
+$ docker stop lab1-20260912-volume-test
+lab1-20260912-volume-test
+
+[exit code: 0]
+
+$ docker rm lab1-20260912-volume-test
+lab1-20260912-volume-test
+
+[exit code: 0]
+
+$ docker run -it --name lab1-20260912-volume-new -d -v lab1-20260912-volume:/data ubuntu bash
+9127642c3722181204ddd8534ff4360e6e0199a160dc68d0b50d24e05d5bfb53
+
+[exit code: 0]
+
+$ docker exec lab1-20260912-volume-new cat /data/test.txt
+Hello from volume
+
+[exit code: 0]
+
+$ docker inspect lab1-20260912-volume-new --format '{{range .Mounts}}Type={{.Type}} Name={{.Name}} Destination={{.Destination}}{{end}}'
+Type=volume Name=lab1-20260912-volume Destination=/data
+
+[exit code: 0]
+
