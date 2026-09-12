@@ -1,16 +1,14 @@
-University: [ITMO University](https://itmo.ru/ru/)
-Faculty: [FICT](https://fict.itmo.ru)
-Course: [Введение в веб технологии](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/)
-Year: 2026/2027
-Group: U4225
-Author: Степанов Даниил Сергеевич
-Lab: Lab0
-Date of create: 12.09.2026
-Date of finished: [заполняется после защиты]
+University: [ITMO University](https://itmo.ru/ru/)  
+Faculty: [FICT](https://fict.itmo.ru)  
+Course: [Введение в веб технологии](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/)  
+Year: 2026/2027  
+Group: U4225  
+Author: Степанов Даниил Сергеевич  
+Lab: Lab0  
+Date of create: 12.09.2026  
+Date of finished: — (заполняется после защиты)
 
 # Лабораторная работа №0. Создание репозитория и настройка рабочего окружения
-
-> Черновик. Репозиторий создан и склонирован. Настройка SSH для автора, отправка изменений, Pull Request и слияние ещё не завершены.
 
 ## Цель работы
 
@@ -18,76 +16,112 @@ Date of finished: [заполняется после защиты]
 
 ## Рабочее окружение
 
-- Операционная система: macOS.
-- Командная оболочка: zsh.
-- Git: `2.50.1 (Apple Git-155)`.
-- Доступ к GitHub: существующая пара SSH-ключей Ed25519.
+Работа выполнена на macOS в оболочке zsh. Установлен Git `2.50.1 (Apple Git-155)`. Для работы используется GitHub-аккаунт [dasestepanov](https://github.com/dasestepanov), для аутентификации Git — отдельный ключ Ed25519.
 
 ## Ход работы
 
-### 1. Проверка Git
+### 1. Проверка Git и настройка SSH
 
-Выполнена команда:
-
-```sh
-git --version
-```
-
-Результат:
+Команда `git --version` вернула:
 
 ```text
 git version 2.50.1 (Apple Git-155)
 ```
 
-Git установлен и доступен из командной строки. Имя автора настроено локально для учебного репозитория. Для email использовано значение из первоначального коммита, созданного аккаунтом автора в GitHub.
-
-### 2. Проверка SSH
-
-На компьютере уже имеется SSH-ключ. Повторная генерация не выполнялась. Для проверки соединения использована команда:
+Первоначальная SSH-проверка обнаружила доступ другого аккаунта. Чтобы работать от имени автора, создан отдельный ключ:
 
 ```sh
-ssh -T -o BatchMode=yes -o ConnectTimeout=10 -o StrictHostKeyChecking=yes git@github.com
+ssh-keygen -t ed25519 -C 'dasestepanov DevOps labs' -f ~/.ssh/id_ed25519_github_dasestepanov
 ```
 
-GitHub подтвердил успешную аутентификацию аккаунта `89620761583veronika-png`. Ответ также сообщает, что GitHub не предоставляет shell-доступ. Команда завершилась кодом 1; в данном случае текст ответа подтверждает успешную SSH-аутентификацию.
+Публичная часть ключа добавлена в GitHub → Settings → SSH and GPG keys под названием `DevOps labs`, тип — Authentication Key. Приватная часть хранится на компьютере вне репозитория.
 
-Автор работы подтвердил другой аккаунт — `dasestepanov`. Проверенный SSH-доступ относится к другому пользователю и не подтверждает настройку SSH для автора работы. Для `dasestepanov` предстоит настроить отдельный ключ и проверить аутентификацию.
+Проверка выполнена с явным выбором ключа и без использования настроек другого аккаунта:
 
-### 3. Подготовка файлов
+```sh
+ssh -F /dev/null -i ~/.ssh/id_ed25519_github_dasestepanov -o IdentitiesOnly=yes -o BatchMode=yes -o StrictHostKeyChecking=yes -T git@github.com
+```
 
-Подготовлены черновики:
+Результат:
 
-- `README.md` — описание проекта, контакты автора и план изучения DevOps.
-- `.gitignore` — исключения для macOS, Windows, временных файлов и локальных секретов.
-- `CONTRIBUTING.md` — порядок внесения изменений и требования к материалам.
-- `lab0/lab0_report.md` — настоящий отчёт.
+```text
+Hi dasestepanov! You've successfully authenticated, but GitHub does not provide shell access.
+```
 
-Добавлен `LICENSE` с текстом лицензии MIT.
+GitHub подтвердил успешную аутентификацию. Сообщение об отсутствии shell-доступа ожидаемо: GitHub принимает Git-операции, но не предоставляет интерактивную оболочку. В таком случае `ssh -T` завершается кодом 1 даже при успешной аутентификации.
 
-### 4. Создание и клонирование репозитория
+### 2. Создание и клонирование репозитория
 
-Создан публичный репозиторий [dasestepanov/devops-lab-stepanov](https://github.com/dasestepanov/devops-lab-stepanov) с основной веткой `main` и начальным README. Первоначальный коммит GitHub создаёт базу для будущего Pull Request.
+Создан публичный репозиторий [devops-lab-stepanov](https://github.com/dasestepanov/devops-lab-stepanov). При создании включено добавление README: GitHub создал начальный коммит и ветку `main`, которая служит базой для Pull Request.
 
-Выполнено клонирование:
+Репозиторий склонирован на компьютер:
 
 ```sh
 git clone https://github.com/dasestepanov/devops-lab-stepanov.git
+cd devops-lab-stepanov
 ```
 
-Клонирование выполнено через HTTPS. Для дальнейшей отправки изменений подготовлен отдельный SSH-ключ Ed25519; публичный ключ ожидает добавления в аккаунт автора.
+Клонирование выполнено через HTTPS. После настройки SSH адрес `origin` переключён на SSH, а выбор ключа сохранён только в конфигурации этого репозитория:
 
-### 5. Действия, ожидающие выполнения
+```sh
+git remote set-url origin git@github.com:dasestepanov/devops-lab-stepanov.git
+git config core.sshCommand 'ssh -F /dev/null -i /Users/veronika/.ssh/id_ed25519_github_dasestepanov -o IdentitiesOnly=yes'
+git config user.name 'Степанов Даниил Сергеевич'
+```
 
-3. Создать ветку `develop` и добавить подготовленные файлы.
-4. Выполнить коммит `Initial project setup` и отправить ветку на GitHub.
-5. Создать Pull Request из `develop` в `main` и описать изменения.
-6. Слить Pull Request, удалить `develop` и обновить локальную `main`.
-7. Проверить состояние репозитория и добавить в отчёт ссылки и фактические результаты.
+Email автора настроен локально командой `git config user.email` по адресу из первоначального коммита аккаунта. Настройки других проектов не изменялись. Абсолютный путь к ключу относится к компьютеру, на котором выполнена работа; на другом компьютере потребуется собственный ключ и соответствующий путь.
 
-## Результаты
+### 3. Подготовка файлов и ветки develop
 
-Git доступен, SSH-аутентификация проверена, первоначальные файлы подготовлены. Лабораторная работа пока не завершена.
+В README добавлены описание проекта, ФИО, группа, учебный год, ссылка на GitHub, Telegram и план изучения DevOps. Файл `.gitignore` исключает служебные файлы macOS и Windows, временные файлы редакторов, локальные журналы и секреты.
+
+Создана рабочая ветка:
+
+```sh
+git switch -c develop
+```
+
+Добавлены `CONTRIBUTING.md` с правилами участия, лицензия MIT и отчёт `lab0/lab0_report.md`. Правила участия описывают цикл отдельная ветка → изменения → проверка → коммит → Pull Request → слияние → удаление ветки.
+
+### 4. Коммит и отправка изменений
+
+```sh
+git diff --check
+git add README.md .gitignore CONTRIBUTING.md LICENSE lab0/lab0_report.md
+git commit -m 'Initial project setup'
+git push -u origin develop
+```
+
+Проверка форматирования изменений прошла без ошибок. Создан коммит [a925de5 — Initial project setup](https://github.com/dasestepanov/devops-lab-stepanov/commit/a925de5e37284becbaf1a58094afde9983243be8). Ветка отправлена на GitHub через SSH; `-u` настроил связь локальной ветки с `origin/develop`.
+
+### 5. Pull Request и слияние
+
+Создан [Pull Request №1 — Initial project setup](https://github.com/dasestepanov/devops-lab-stepanov/pull/1). Базовая ветка — `main`, ветка изменений — `develop`. В описании перечислены файлы, назначение изменений и выполненные проверки.
+
+GitHub сообщил об отсутствии конфликтов. Pull Request слит методом merge commit: [8910604](https://github.com/dasestepanov/devops-lab-stepanov/commit/8910604). Этот способ сохранил отдельный коммит `Initial project setup` и добавил коммит слияния.
+
+### 6. Удаление develop и обновление локальной main
+
+```sh
+git fetch origin
+git switch main
+git pull --ff-only
+git push origin --delete develop
+git branch -d develop
+```
+
+Локальная `main` обновлена до результата слияния. Удалённая и локальная ветки `develop` удалены. Использован безопасный вариант `git branch -d`, который проверяет, что изменения ветки уже слиты.
+
+После завершения операций отчёт дополнен фактическими результатами отдельным документационным коммитом в `main`.
+
+## Результаты и вывод
+
+Создан GitHub-репозиторий, выполнено клонирование, настроены автор коммитов и SSH-доступ для `dasestepanov`. В проекте присутствуют README, .gitignore, CONTRIBUTING, LICENSE и отчёт. Выполнен полный цикл работы с веткой `develop`: коммит, отправка, Pull Request, слияние в `main` и удаление ветки.
+
+Git хранит историю изменений локально; GitHub предоставляет удалённый репозиторий и интерфейс Pull Request. SSH-ключ обеспечивает аутентификацию при обмене изменениями. Удаление слитой ветки не удаляет вошедшие в `main` коммиты.
+
+Практическая часть выполнена 12.09.2026. Защита перед преподавателем ещё не проведена, поэтому поле Date of finished не заполнено.
 
 ## Правила оформления
 
-[Требования к отчётам](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/education/labs2025-2026/reportdesign/) предусматривают Markdown-отчёты в папках `labN`, обязательную шапку, README, .gitignore и LICENSE. Название репозитория в задании №0 отличается от общей схемы именования отчётного репозитория; для выполнения задания предполагается название `devops-lab-stepanov`.
+Использованы [предоставленные правила отчётов](https://ex-itmo-ict-faculty.github.io/introduction-in-web-tech/education/labs2025-2026/reportdesign/): Markdown, обязательная шапка, расположение `lab0/lab0_report.md`, README, .gitignore и LICENSE. Учебный год 2026/2027 указан по данным автора. Имя `devops-lab-stepanov` взято из конкретного задания №0; общие правила предлагают другое имя для общего репозитория отчётов — `2026_2027-introduction-in-web-tech-u4225-stepanov_d_s`.
