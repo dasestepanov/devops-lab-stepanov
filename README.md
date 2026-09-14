@@ -15,7 +15,7 @@
 
 - [Отчет курсовой](https://github.com/dasestepanov/2026_2027-introduction-in-web-tech-u4225-stepanov_d_s/blob/main/coursework/COURSEWORK.md)
 - [Исходники курсовой](coursework/)
-- Сайт курсовой — ожидает публикации.
+- [Открыть сайт курсовой](https://dasestepanov.github.io/devops-lab-stepanov/)
 
 <p align="center">
   <img src="assets/motivation-cat.png" alt="Кот: я не сдамся, я крутой" width="420">
